@@ -68,12 +68,12 @@ response = autogen.Completion.create(context=test_instance, **config)
 
 * 了解[multi-agent conversation](/docs/Use-Cases/agent_chat)和[enhanced LLM inference](/docs/Use-Cases/enhanced_inference)的用例。
 * 查找[代码示例](/docs/Examples/AgentChat)。
-* 阅读[SDK](/docs/reference/agentchat/conversable_agent/)。
+
 * 了解围绕AutoGen的[研究](/docs/Research)。
 * [discord](https://github.com/orgs/microsoft/projects/989/views/3)
 * 在[Discord](https://discord.gg/pAbnFJrkgZ)上交流。
 * 在[Twitter](https://twitter.com/pyautogen)上关注。
 
-如果你喜欢我们的项目,请在GitHub上给它一个[星星](https://github.com/microsoft/autogen/stargazers)。 如果你有兴趣贡献,请参考[贡献者指南](/docs/Contribute)。
+
 
 <iframe src="https://ghbtns.com/github-btn.html?user=microsoft&amp;repo=autogen&amp;type=star&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>

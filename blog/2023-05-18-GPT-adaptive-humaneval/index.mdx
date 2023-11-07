@@ -57,7 +57,6 @@ def vowels_count(s):
 
 这个解决方案在不知道或预测哪个任务适合哪种配置的情况下自适应工作。它简单地逐一尝试多种配置，从最便宜的配置开始。注意，一个配置可以生成多个响应（通过将推理参数n设置得大于1）。不同的配置可以使用相同的模型和不同的推理参数，例如n和温度。每个任务返回并评估一个响应。
 
-这个解决方案的实现在[autogen](/docs/reference/code_utils#implement)中提供。它使用以下配置序列：
 
 1. GPT-3.5-Turbo, n=1, temperature=0
 2. GPT-3.5-Turbo, n=7, temperature=1, stop=["\nclass", "\ndef", "\nif", "\nprint"]

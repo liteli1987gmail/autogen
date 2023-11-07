@@ -22,7 +22,7 @@ assistant = autogen.AssistantAgent(
 )
 ```
 
-`llm_config` 在 LLM 处理的 [`create`](/docs/reference/oai/client#create) 函数中使用。当未提供 `llm_config` 时，代理将依赖于其他 openai 设置，例如 `openai.api_key` 或环境变量 `OPENAI_API_KEY`，这在你希望使用单个端点时也可以工作。你还可以通过以下方式明确指定:
+`llm_config` 在 LLM 处理的 `create` 函数中使用。当未提供 `llm_config` 时，代理将依赖于其他 openai 设置，例如 `openai.api_key` 或环境变量 `OPENAI_API_KEY`，这在你希望使用单个端点时也可以工作。你还可以通过以下方式明确指定:
 ```python
 assistant = autogen.AssistantAgent(name="assistant", llm_config={"api_key": ...})
 ```
