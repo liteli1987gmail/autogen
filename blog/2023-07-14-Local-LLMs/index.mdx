@@ -1,0 +1,148 @@
+---
+title: 使用AutoGen进行本地LLM应用
+authors: jialeliu
+tags: [LLM]
+---
+
+**简要总结:**
+我们展示了如何使用autogen进行本地LLM应用。作为示例，我们将启动一个使用[FastChat](https://github.com/lm-sys/FastChat)的端点，并在[ChatGLMv2-6b](https://github.com/THUDM/ChatGLM2-6B)上执行推理。
+
+## 准备工作
+
+### 克隆FastChat
+
+FastChat为其支持的模型提供了与OpenAI兼容的API，因此您可以将FastChat作为OpenAI API的本地替代品使用。然而，其代码需要进行小的修改才能正常工作。
+
+```bash
+git clone https://github.com/lm-sys/FastChat.git
+cd FastChat
+```
+
+### 下载检查点
+
+ChatGLM-6B是一个基于通用语言模型（GLM）框架的开放双语语言模型，拥有62亿参数。ChatGLM2-6B是其第二代版本。
+
+在从HuggingFace Hub下载之前，您需要安装Git LFS [安装](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)。
+
+```bash
+git clone https://huggingface.co/THUDM/chatglm2-6b
+```
+
+## 启动服务器
+
+首先，启动控制器
+
+```bash
+python -m fastchat.serve.controller
+```
+
+然后，启动模型工作器
+
+```bash
+python -m fastchat.serve.model_worker --model-path chatglm2-6b
+```
+
+最后，启动RESTful API服务器
+
+```bash
+python -m fastchat.serve.openai_api_server --host localhost --port 8000
+```
+
+通常这样做就可以了。然而，如果您遇到像[这样](https://github.com/lm-sys/FastChat/issues/1641)的错误，注释掉`fastchat/protocol/api_protocal.py`和`fastchat/protocol/openai_api_protocol.py`中所有包含`finish_reason`的行，将解决问题。修改后的代码看起来像这样：
+
+```python
+class CompletionResponseChoice(BaseModel):
+    index: int
+    text: str
+    logprobs: Optional[int] = None
+    # finish_reason: Optional[Literal["stop", "length"]]
+
+class CompletionResponseStreamChoice(BaseModel):
+    index: int
+    text: str
+    logprobs: Optional[float] = None
+    # finish_reason: Optional[Literal["stop", "length"]] = None
+```
+
+
+## 使用`oai.Completion`与模型交互（要求openai<1）
+
+现在可以通过openai-python库以及`autogen.oai.Completion`和`autogen.oai.ChatCompletion`直接访问模型。
+
+
+```python
+from autogen import oai
+
+# 创建一个文本完成请求
+response = oai.Completion.create(
+    config_list=[
+        {
+            "model": "chatglm2-6b",
+            "base_url": "http://localhost:8000/v1",
+            "api_type": "open_ai",
+            "api_key": "NULL", # 只是一个占位符
+        }
+    ],
+    prompt="Hi",
+)
+print(response)
+
+# 创建一个聊天完成请求
+response = oai.ChatCompletion.create(
+    config_list=[
+        {
+            "model": "chatglm2-6b",
+            "base_url": "http://localhost:8000/v1",
+            "api_type": "open_ai",
+            "api_key": "NULL",
+        }
+    ],
+    messages=[{"role": "user", "content": "Hi"}]
+)
+print(response)
+```
+
+如果您想切换到不同的模型，请下载它们的检查点，并在启动模型工作器时指定模型路径。
+
+## 与多个本地LLM交互
+
+如果您想在本地机器上与多个LLM交互，请用多模型变体替换上面的`model_worker`步骤：
+
+```bash
+python -m fastchat.serve.multi_model_worker \
+    --model-path lmsys/vicuna-7b-v1.3 \
+    --model-names vicuna-7b-v1.3 \
+    --model-path chatglm2-6b \
+    --model-names chatglm2-6b
+```
+
+推理代码将是：
+
+```python
+from autogen import oai
+
+# 创建一个聊天完成请求
+response = oai.ChatCompletion.create(
+    config_list=[
+        {
+            "model": "chatglm2-6b",
+            "base_url": "http://localhost:8000/v1",
+            "api_type": "open_ai",
+            "api_key": "NULL",
+        },
+        {
+            "model": "vicuna-7b-v1.3",
+            "base_url": "http://localhost:8000/v1",
+            "api_type": "open_ai",
+            "api_key": "NULL",
+        }
+    ],
+    messages=[{"role": "user", "content": "Hi"}]
+)
+print(response)
+```
+
+## 进一步阅读
+
+* 关于`autogen`的[文档](/docs/Getting-Started)。
+* 关于FastChat的[文档](https://github.com/lm-sys/FastChat)。

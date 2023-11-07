@@ -1,19 +1,21 @@
-# Docusaurus 2
 
-This directory is a brief example of a [Docusaurus](https://v2.docusaurus.io) site that can be deployed to Vercel with zero configuration.
 
-## Deploy Your Own
+# 📘 AutoGen中文翻译文档
 
-Deploy your own Docusaurus project with Vercel.
+欢迎来到 [AutoGen.run](http://www.AutoGen.run) 的官方GitHub页面！这里提供了AutoGen框架的中文翻译文档，旨在帮助中国开发者更容易地理解和学习AutoGen框架。
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/docusaurus-2&template=docusaurus-2)
+## 🚀 关于AutoGen
+AutoGen是一个由[Microsoft](https://github.com/microsoft)开源的框架，专为构建和优化大型语言模型（LLM）工作流程而设计。它提供了多代理会话框架、应用程序构建工具以及推理性能优化的支持。
 
-_Live Example: https://docusaurus-2-template.vercel.app_
+## 🌐 初心和目标
+我们的目标是为了方便中国开发者了解和学习AutoGen框架，从而推动技术的普及和交流。我们相信，通过提供中文文档，可以让更多的人加入到开源社区，共同推动技术的发展。
 
-### How We Created This Example
+## 📚 学习和交流
+如果你对AutoGen框架感兴趣，或者在学习过程中遇到任何问题，欢迎加入我们的交流群。请联系我们的管理员abc18601613801进行交流和讨论。
 
-To get started with Docusaurus on Vercel, you can use the [Docusaurus CLI](https://v2.docusaurus.io/docs/installation#scaffold-project-website) to initialize the project:
+## 🤝 贡献
+我们欢迎任何形式的贡献，无论是改进文档，提供反馈，还是分享你的使用案例。请访问我们的GitHub仓库。
+感谢你的支持和关注！🙏
 
-```shell
-npx create-docusaurus@latest my-website classic
-```
+
+

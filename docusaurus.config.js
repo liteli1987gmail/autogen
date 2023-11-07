@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'AutoGen 多代理会话框架',
+  tagline: 'AutoGen 多代理',
+  url: 'https://autogen.run',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -37,14 +37,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/liteli1987gmail/autogen/tree/main/docs/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/liteli1987gmail/autogen/tree/main/docs/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -56,75 +56,102 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      prism: {
+        theme: require("prism-react-renderer/themes/vsLight"),
+        darkTheme: require("prism-react-renderer/themes/vsDark"),
+      },
+      image: "img/parrot-chainlink-icon.png",
+      metadata: [
+        { name: 'keywords', content: 'antogen,langchain,LLM,chatGPT,应用开发' },
+        {
+          name: 'description', content: 'AutoGen 中文文档，助力大语言模型LLM应用开发、chatGPT应用开发。'
+        }],
       navbar: {
-        title: 'My Site',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
-        },
+        title: "AutoGen 中文文档",
+        // logo: {
+        //   alt: 'AutoGen',
+        //   src: 'img/ag.svg',
+        // },
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'Getting-Started',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: 'blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            type: 'doc',
+            docId: 'FAQ',
+            position: 'left',
+            label: 'FAQ',
+          },
+          {
+            href: 'https://github.com/liteli1987gmail/autogen',
             label: 'GitHub',
             position: 'right',
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "light",
         links: [
           {
-            title: 'Docs',
+            title: "Community",
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: "Langchain英文官网",
+                href: "https://www.Langchain.com",
               },
+              {
+                label: "Langchain GitHub",
+                href: "https://github.com/hwchase17/langchain",
+              },
+              {
+                label: "LLM/GPT应用外包开发",
+                href: "http://www.r-p-a.com/llm-gpt-kaifa/",
+              }
             ],
           },
           {
-            title: 'Community',
+            title: "LLM/GPT生态",
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: "OpenAI 文档",
+                href: "https://www.openaidoc.com.cn"
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: "Milvus 文档",
+                href: "https://www.milvus-io.com"
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: "Pinecone 文档",
+                href: "https://www.pinecone-io.com/"
               },
-            ],
+              {
+                label: "AutoGen 中文文档",
+                href: "https://autogen.run"
+              }
+            ]
           },
           {
-            title: 'More',
+            title: "GitHub",
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: "Python",
+                href: "https://github.com/liteli1987gmail/autogen",
               },
             ],
-          },
+          }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        // logo: {
+        //   alt: 'LangChain中文网',
+        //   // src: 'img/quncode.png',
+        //   src:'https://pic1.zhimg.com/80/v2-31131dcb1732cb5bca7c182c9e8da046_r.jpg',
+        //   width: 320,
+        //   height: 380,
+        // },
+        // copyright: `Copyright © ${new Date().getFullYear()} LangChain中文网. 沪ICP备2023014280号-3`,
       },
     }),
 };

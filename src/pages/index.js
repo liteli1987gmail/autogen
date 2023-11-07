@@ -1,11 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
+import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-
 import styles from './index.module.css';
+import HomepageFeatures from '../components/HomepageFeatures';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -17,8 +16,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            to="/docs/getting-started">
+            AutoGen 中文文档，助力大语言模型LLM应用开发、chatGPT应用开发。 - 3min ⏱️
           </Link>
         </div>
       </div>
@@ -30,8 +29,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`AutoGen`}
+      description="Enabling Next-Gen LLM Applications via Multi-Agent Conversation Framework">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
